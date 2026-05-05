@@ -1,52 +1,84 @@
-# Diabetes Prediction using Linear Regression
+# Diabetes Prediction using Logistic Regression
 
 ## Project Overview
-This project aims to predict whether a patient has diabetes based on various health-related features using a **Linear Regression** model. The dataset used is the **Pima Indians Diabetes Database**, which includes information about pregnancies, glucose levels, blood pressure, insulin levels, BMI, diabetes pedigree function, and age. The objective is to build a predictive model and evaluate its performance.
+This project predicts whether a patient has diabetes based on various
+health-related features using **Logistic Regression** and **Random Forest**
+classification models. The dataset is the **Pima Indians Diabetes Database**,
+containing health metrics like glucose levels, BMI, blood pressure, insulin
+levels, and age.
 
-## Project Structure
-- **Dataset**: The dataset used in this project contains information on 768 individuals, with 8 features and 1 target variable (Outcome).
-- **Tools & Libraries**: 
-  - Python (v3.x)
-  - `pandas` for data manipulation
-  - `numpy` for numerical operations
-  - `scikit-learn` for machine learning algorithms and model evaluation
-  - `matplotlib` and `seaborn` for data visualization
+---
 
-## Requirements
-To run the project, you need to install the following libraries:
+## Dataset
+| Property | Details |
+|---|---|
+| Source | Pima Indians Diabetes Database |
+| Total Records | 768 individuals |
+| Features | 8 (Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age) |
+| Target | `Outcome` — 0 = No Diabetes, 1 = Diabetes |
+
+---
+
+## Tools & Libraries
+| Library | Purpose |
+|---|---|
+| `pandas` | Data manipulation |
+| `numpy` | Numerical operations |
+| `scikit-learn` | ML models and evaluation |
+| `matplotlib` | Data visualization |
+| `seaborn` | Statistical plots |
+
+## Installation
 ```bash
 pip install pandas numpy scikit-learn matplotlib seaborn
 ```
 
-## Steps
+---
 
-### 1. Setup and Imports
-We begin by importing necessary libraries like `numpy`, `pandas`, `sklearn`, and visualization libraries `matplotlib` and `seaborn`.
+## Project Steps
 
-### 2. Load and Explore the Dataset
-The dataset is loaded into a DataFrame using `pandas`. An exploratory data analysis (EDA) is conducted, and we check for any categorical variables that need conversion to numeric.
+1. **Setup & Imports** — Load all required libraries
+2. **Load Dataset** — Read CSV using pandas
+3. **Exploratory Data Analysis (EDA)** — Inspect data, correlation heatmap
+4. **Data Preprocessing** — Handle missing values (`SimpleImputer`), scale features (`StandardScaler`)
+5. **Train-Test Split** — 80/20 split with `random_state=42`
+6. **Model Training** — Train Logistic Regression (`max_iter=1000`)
+7. **Prediction & Evaluation** — Accuracy, Precision, Recall, F1-Score, Confusion Matrix
+8. **Random Forest Comparison** — Compare Logistic Regression vs Random Forest
+9. **Cross-Validation** — 5-fold CV with accuracy scoring
+10. **ROC-AUC Curve** — Visualize model discrimination ability
+11. **Confusion Matrix Heatmap** — Visual breakdown of predictions
 
-### 3. Data Preprocessing
-Missing values are handled using `SimpleImputer` from `sklearn`, which fills missing values with the mean. Features are scaled using `StandardScaler` to ensure that all features contribute equally to the model.
-
-### 4. Train-Test Split
-The data is split into training and testing sets using an 80/20 split, ensuring that the model can be tested on unseen data.
-
-### 5. Model Selection and Training
-A **Linear Regression** model is selected and trained using the training set. The model's performance is evaluated on the test set.
-
-### 6. Prediction and Evaluation
-The model's predictions are compared with actual values, and metrics like **Mean Squared Error (MSE)** and **R² Score** are calculated to evaluate the model's performance.
-
-### 7. Cross-Validation
-To further evaluate the model's robustness, **5-fold cross-validation** is performed, providing an average R² score to assess model stability.
-
-### 8. Visualization of Results
-A scatter plot is generated to visually compare actual vs predicted values.
+---
 
 ## Results
 
-- **Mean Squared Error (MSE)**: 0.171
-- **R² Score**: 0.255
-- **Cross-Validation R² Scores**: [0.2568, 0.2576, 0.2907, 0.2811, 0.2941]
-- **Mean Cross-Validation R² Score**: 0.276
+| Metric | Logistic Regression | Random Forest |
+|---|---|---|
+| Test Accuracy | ~78% | ~77% |
+| Cross-Val Accuracy (mean) | ~77% | — |
+| AUC-ROC | ~0.84 | — |
+
+> ⚠️ Update the values above with your actual output after running the notebook.
+
+---
+
+## Key Visualizations
+- 📊 Correlation Heatmap (EDA)
+- 📈 ROC Curve with AUC Score
+- 🔲 Confusion Matrix Heatmap
+
+---
+
+## Why Logistic Regression for this Problem?
+The target variable `Outcome` is **binary (0 or 1)**, making this a
+**classification problem** — not regression. Logistic Regression is ideal because:
+- It is designed for binary classification
+- It outputs probability scores for each class
+- It is interpretable and computationally efficient
+- It performs well on tabular medical data with proper scaling
+
+---
+
+## Author
+**Mahinur Rahman Pamel**
